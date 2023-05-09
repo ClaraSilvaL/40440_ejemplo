@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from sistema_coder.views import saludar, saludar_con_fecha, saludar_a_usuario, saludar_con_html
-
+from sistema_coder.views import saludar, saludar_con_fecha, saludar_a_usuario, saludar_con_html, \
+inicio
+#Se coloca la barra invertida cuando son varias cosas a importar y no alcanza en una sola línea
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', inicio),
     path('estudios/', include('control_estudios.urls')),
     path("saludo/", saludar),
     path("saludo-hoy/", saludar_con_fecha),
