@@ -23,7 +23,7 @@ inicio
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', inicio),
+    path('', inicio, name= 'inicio'),
     path('estudios/', include('control_estudios.urls')),
     path("saludo/", saludar),
     path("saludo-hoy/", saludar_con_fecha),
