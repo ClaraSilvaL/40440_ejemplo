@@ -1,23 +1,27 @@
 from django.shortcuts import render
 
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DetailView, DeleteView
 
 from control_estudios.forms import CursoFormulario
 from control_estudios.models import Estudiante, Curso
 
 # Create your views here.
-def listar_estudiantes(request):
-    contexto = {
-        "estudiantes": Estudiante.objects.all(),
-    }
-    http_response = render(
-        request = request,
-        template_name='control_estudios/lista_estudiantes.html',
-        context = contexto,
-    )
-    return http_response
+
+#NO USADO
+#def listar_estudiantes(request):
+#    contexto = {
+#        "estudiantes": Estudiante.objects.all(),
+#    }
+#    http_response = render(
+#        request = request,
+#        template_name='control_estudios/lista_estudiantes.html',
+#        context = contexto,
+#    )
+#    return http_response
     
+#Vistas de cursos    
 def listar_cursos(request):
     contexto = {
         "cursos": Curso.objects.all(),
@@ -120,3 +124,24 @@ def editar_curso(request, id):
             context={'formulario': formulario},
         )    
     
+#Vistas de estudiantes
+class EstudianteListView(ListView):
+    model = Estudiante
+    template_name = 'control_estudios/lista_estudiantes.html'
+
+class EstudianteCreateView(CreateView):
+    model = Estudiante
+    fields = ('apellido', 'nombre', 'email', 'dni')
+    success_url = reverse_lazy('lista_estudiantes')
+
+class EstudianteDetailView(DetailView):
+    model = Estudiante
+
+class EstudianteUpdateView(UpdateView):
+    model = Estudiante
+    fields = ('apellido', 'nombre', 'email', 'dni')
+    success_url = reverse_lazy('lista_estudiantes')
+
+class EstudianteDeleteView(DeleteView):
+    model = Estudiante
+    success_url = reverse_lazy('lista_estudiantes')

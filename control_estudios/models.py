@@ -14,7 +14,7 @@ class Estudiante(models.Model):
     email = models.EmailField(blank=True)
     telefono = models.CharField(max_length=20, blank=True)
     dni = models.CharField(max_length=32)
-    fecha_nacimiento = models.DateField()
+    fecha_nacimiento = models.DateField(blank=True)
 
     #Para permitir un campo en blanco, se debe agregar "blank=True", como en email y telefono, si fuera un numero, se agrega adicionalmente "null=True"
     def __str__(self):
