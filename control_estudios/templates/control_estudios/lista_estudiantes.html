@@ -12,9 +12,9 @@
                     <th>ID</th>
                     <th>Nombre</th>
                     <th>Apellido</th>
-                    <th>Ver</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 {% for alumno in object_list %}
                 <tr>
@@ -28,7 +28,9 @@
                         <a href="{% url 'editar_estudiante' alumno.id %}">Editar</a>
                     </td>
                     <td>                        
-                        <a href="{% url 'eliminar_estudiante' alumno.id %}">Eliminar</a>
+                        <a href="{% url 'eliminar_estudiante' alumno.id %}">
+                            <i class="bi bi-trash"></i>    
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
