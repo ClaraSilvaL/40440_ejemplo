@@ -1,9 +1,11 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Curso(models.Model):
     nombre = models.CharField(max_length=164) #Equivalente de str
     comision = models.IntegerField() # Equivalente de int
+    creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return f'{self.nombre} / {self.comision}'
@@ -15,6 +17,7 @@ class Estudiante(models.Model):
     telefono = models.CharField(max_length=20, blank=True)
     dni = models.CharField(max_length=32)
     fecha_nacimiento = models.DateField(blank=True)
+    creador = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
     #Para permitir un campo en blanco, se debe agregar "blank=True", como en email y telefono, si fuera un numero, se agrega adicionalmente "null=True"
     def __str__(self):
